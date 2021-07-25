@@ -38,7 +38,7 @@ Demographic: Everyone! Who doesn't enjoy music?
         - Home Page
             - Find other users based on similarities in likes
                 - Tracks hold highest weight
-                - Artists hold next highest wieght
+                - Artists hold next highest weight
                 - Genre's hold lowest weight
                 - As application scales, location begins holding a certain amount of weight.
             - Top of page is Nav bar for site.
