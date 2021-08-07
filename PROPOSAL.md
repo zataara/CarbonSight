@@ -9,8 +9,7 @@ Demographic: Everyone! Who doesn't enjoy music?
 
 - Project Outline
      - APIs
-        - Spotify
-        - ~Soundcloud~ - Too complex to have two separate Libraries moved into one on Synctify.
+        - Spotify - general api (no authorizeation)
     - Database Schema
         - Tables
             - Users
@@ -37,9 +36,9 @@ Demographic: Everyone! Who doesn't enjoy music?
                 - Complex: Show the user genre's first? Then Artists? Then Tracks? Honestly not sure how this flow is going to work. 
         - Home Page
             - Find other users based on similarities in likes
-                - Tracks hold highest weight
+                - ~Tracks hold highest weight~
                 - Artists hold next highest weight
-                - Genre's hold lowest weight
+                - ~Genre's hold lowest weight~
                 - As application scales, location begins holding a certain amount of weight.
             - Top of page is Nav bar for site.
             - Center of page is 'tinder like' matching that shows you a card with username, profile image, and short list of highest weighted similarities.
@@ -50,6 +49,18 @@ Demographic: Everyone! Who doesn't enjoy music?
             - Bottom of page is Spotify music player that plays through liked tracks of current user.
             - Right side of page is editable list of connections to other users.
             - Left side of page is an editable, node-style list of Genres, Artists, and Tracks. Tracks will have a small play button that will send them to player on the bottom of the page. Editing this list will NOT create POST requests to Spotify. 
+
+
+            Shorter updates - more feedback between points
+            Have a northstar for this project
+            Normalize the ratings for each user
+            Keep track of how many people total have seen a specific user
+                give higher weight to users who have been seen less
+            Research matching algorithms
+                Look for simple alternatives
+                Or use a library
+                
+
 
         
    
