@@ -1,15 +1,22 @@
 Tables
 - Users
+    - Username (primary key)
     - First Name
     - Last Name
-    - Username (primary key)
-    - Favorite Artists
-    - Favorite Genres
-    - Followers
+    - Followers (foreign key)
+    - Artists (foreign key)
 
-Or?
-
-- Fllowness
-    - Username (primary key)
+- Artists
+    - id (primary key - taken from api)
+    - Genre (foreign key - taken from api)
     - Username (foreign key)
-    - Username (foreign key)...
+
+
+- Genres
+    - id (primary key)
+    - Artists (foreign key)
+
+
+- Followers
+    - Username (primary key)
+    - Following (foreign key)
