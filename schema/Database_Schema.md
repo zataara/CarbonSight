@@ -8,13 +8,9 @@ Tables
 
 - Artists
     - id (primary key - taken from api)
-    - Genre (foreign key - taken from api)
+    - Genre (taken from api)
     - Username (foreign key)
 
-
-- Genres
-    - id (primary key)
-    - Artists (foreign key)
 
 
 - Followers
