@@ -3,6 +3,9 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
 from forms import UserForm, LoginForm
 from sqlalchemy.exc import IntegrityError
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import secrets
 
 
 app = Flask(__name__)
@@ -16,6 +19,9 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 db.create_all()
+
+
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
 
 ### Main routes
 @app.route('/')
