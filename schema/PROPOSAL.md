@@ -14,14 +14,7 @@ Demographic: Everyone! Who doesn't enjoy music?
         - Tables
             - Users
                 - User will sign up on Synctify. 
-            - Genres
             - Artists
-            - Tracks
-    - Sensitive Information
-        - Spotifty User information
-            - Name
-            - Email
-            - Location
     - Potential Issues
     - User Flow
         - Register
@@ -29,7 +22,7 @@ Demographic: Everyone! Who doesn't enjoy music?
         - Login
         - Gather Preferences
             - Manually through Spotify's general API
-                - Have the user add a few Genre's they are interested in. Then display top artists in those genres. The user can then add the artists that are displayed or search for more. At any time the user can move on to the home page. The gathering prefrences page will not be shown again to the user.
+                - Have the user search for an artist that they are interested in. The search results will be displayed. Once the user has added the artist, that artists similar artists will be displayed instead under the search bar. After adding at least one artist the user may at any time exit the search page and go to home page. 
         - Home Page
             - Find other users based on similarities in likes
                 - Only using artists to match others. Artists are shown in a heirarchical structure and user can adjust heirarchy and search for more artists in search bar. 
@@ -39,7 +32,7 @@ Demographic: Everyone! Who doesn't enjoy music?
                     - Continue: the preference is recorded and user will not be shown the same possible connection again.
                     - Connect: the connection is then appended to the list on right side of page.
                         - If both users choose to connect, a 'gold' banner appears around that connection in list and contact info becomes visible.
-            - Bottom of page is Spotify music player that plays through liked tracks of current user?
+            - Bottom of page is Spotify music player that plays through liked tracks of current user? (This will be first to go if short on time)
             - Right side of page is editable list of connections to other users.
             - Left side of page is an editable, heirarchical tree of liked Artists. 
 
