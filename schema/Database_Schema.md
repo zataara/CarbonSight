@@ -14,8 +14,9 @@ Tables
 
 
 - Followers
-    - Username (primary key)
-    - Following (foreign key)
+    - id (primary key)
+    - user (foreign key)
+    - follower (foreign key)
 
 
 A visual example of the Database Schema: https://app.quickdatabasediagrams.com/#/d/64Tjie
