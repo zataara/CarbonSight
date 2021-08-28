@@ -28,12 +28,11 @@ class User(db.Model):
                             unique=True)
     password = db.Column(db.String,
                             nullable=False)
-    email = db.Column(db.String(50),
-                            nullable=False)
     first_name = db.Column(db.String(30),
                             nullable=False)
     last_name = db.Column(db.String(30),
                             nullable=False)
+    img_url = db.Column(db.String)
 
     @classmethod
     def register(cls, username, password, email, first_name, last_name):
@@ -63,6 +62,26 @@ class User(db.Model):
         else:
             return False
     
+
+class Artist(db.Model):
+    '''Database model for Users'''
+
+    __tablename__ = 'artists'
+
+    def __repr__(self):
+        
+        a = self
+        return f'<Artists {a.id} >'
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True)
+    username = db.Column(db.String(20),
+                            nullable=False,
+                            unique=True)
+    followers = db.Column(db.Integer)
+
+
 
     
 
