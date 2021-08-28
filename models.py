@@ -18,7 +18,7 @@ class User(db.Model):
     def __repr__(self):
         
         u = self
-        return f'<User {u.id} >'
+        return f'<User {u.id} username={u.username} name={first_name} {last_name}>'
 
     id = db.Column(db.Integer,
                     primary_key=True,
@@ -64,7 +64,7 @@ class User(db.Model):
     
 
 class Artist(db.Model):
-    '''Database model for Users'''
+    '''Database model for Artists'''
 
     __tablename__ = 'artists'
 
@@ -76,12 +76,17 @@ class Artist(db.Model):
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True)
-    username = db.Column(db.String(20),
+    name = db.Column(db.String(40),
                             nullable=False,
                             unique=True)
-    followers = db.Column(db.Integer)
+    img_url = db.Column(db.String)
 
 
 
-    
+artist_user = db.Table('artist_user',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('artist_id', db.Integer, db.ForeignKey('artist.id'), primary_key=True))
+
+
+
 
