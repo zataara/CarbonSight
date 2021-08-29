@@ -8,7 +8,6 @@ def connect_db(app):
         db.app = app
         db.init_app(app)
 
-## Model is used as a placefiller reference. Make sure to change all 'Model' instances to a variable of your chooseing.
 
 class User(db.Model):
     '''Database model for Users'''
