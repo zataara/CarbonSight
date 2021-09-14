@@ -31,6 +31,7 @@ pycparser==2.20
 Pygments==2.9.0
 requests==2.26.0
 six==1.16.0
+spotipy==2.19.0
 SQLAlchemy==1.4.22
 traitlets==5.0.5
 urllib3==1.26.6
