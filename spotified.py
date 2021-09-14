@@ -8,4 +8,5 @@ scope = "user-library-read"
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
 
-
+def searchArtists(q):
+    search(q, limit=10, offset=0, type='artists', market=None)
