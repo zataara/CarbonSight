@@ -54,7 +54,7 @@ def register_user():
 
 @app.route('/secret')
 def secret():
-    return render_template('secret.html')
+    return render_template('home.html')
 
 
 

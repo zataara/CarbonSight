@@ -12,7 +12,7 @@ def connect_db(app):
 class User(db.Model):
     '''Database model for Users'''
 
-    __tablename__ = 'users'
+    __tablename__ = 'user'
 
     def __repr__(self):
         
@@ -65,7 +65,7 @@ class User(db.Model):
 class Artist(db.Model):
     '''Database model for Artists'''
 
-    __tablename__ = 'artists'
+    __tablename__ = 'artist'
 
     def __repr__(self):
         
@@ -79,6 +79,11 @@ class Artist(db.Model):
                             nullable=False,
                             unique=True)
     img_url = db.Column(db.String)
+
+
+
+
+
 
 
 
