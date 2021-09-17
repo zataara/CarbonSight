@@ -5,7 +5,7 @@ from forms import UserForm, LoginForm
 from sqlalchemy.exc import IntegrityError
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import secrets
+from secrets import client_id, client_secret
 
 
 app = Flask(__name__)
