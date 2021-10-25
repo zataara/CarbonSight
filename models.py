@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
+
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
@@ -60,42 +61,6 @@ class User(db.Model):
             return u
         else:
             return False
-    
-
-class Artist(db.Model):
-    '''Database model for Artists'''
-
-    __tablename__ = 'artist'
-
-    def __repr__(self):
-        
-        a = self
-        return f'<Artists {a.id} >'
-
-    id = db.Column(db.Integer,
-                    primary_key=True,
-                    autoincrement=True)
-    name = db.Column(db.String(40),
-                            nullable=False,
-                            unique=True)
-    img_url = db.Column(db.String)
-
-
-
-
-
-
-
-
-artist_user = db.Table('artist_user',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('artist_id', db.Integer, db.ForeignKey('artist.id'), primary_key=True))
-
-following = db.Table('following',
-    db.Column('followee_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('follower_id', db.Integer, db.ForeignKey('user.id'), primary_key=True))
-
-
 
 
 
