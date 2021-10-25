@@ -1,12 +1,13 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
-from forms import UserForm, LoginForm
+from forms import UserForm, LoginForm, HomeUsageForm
 from sqlalchemy.exc import IntegrityError
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-from secrets import client_id, client_secret
+import requests
 
+
+BASE_URL = "https://www.carboninterface.com/api/v1"
+API_KEY = "NJFYCDJ33R0SnwOI29elw"
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///synctify'
@@ -19,9 +20,6 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 db.create_all()
-
-
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
 
 ### Main routes
 @app.route('/')
@@ -81,3 +79,33 @@ def login_user():
         else:
             form.username.errors = ['Invalid username/password.']
     return render_template('login.html', form=form)
+
+
+@app.route('/estimates', methods=['GET', 'POST'])
+def testing():
+
+    form=HomeUsageForm()
+
+    if form.validate_on_submit():
+        homename = form.homename.data
+        homestate = form.homestate.data
+        month = form.month.data
+        usage = form.usage.data
+
+        r = requests.post(f'{BASE_URL}/estimates', 
+            data={ "type": "electricity",
+                    "electricity_unit": "mwh",
+                    "electricity_value": usage,
+                    "country": "us",
+                    "state": homestate},
+
+            headers={"content-type":"application/json",
+                    "Authorization":f"Bearer ${API_KEY}"})
+
+        
+
+        return render_template('/secret', )
+
+    return render_template('login.html', form=form)
+
+
