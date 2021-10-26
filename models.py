@@ -23,7 +23,7 @@ class User(db.Model):
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True)
-    username = db.Column(db.String(20),
+    email = db.Column(db.String(20),
                             nullable=False,
                             unique=True)
     password = db.Column(db.String,
@@ -32,7 +32,7 @@ class User(db.Model):
                             nullable=False)
     last_name = db.Column(db.String(30),
                             nullable=False)
-    img_url = db.Column(db.String)
+    home_address = db.Column(db.String)
 
     @classmethod
     def register(cls, username, password, email, first_name, last_name):
@@ -64,4 +64,25 @@ class User(db.Model):
 
 
 
+class Home(db.Model):
+    '''Database model for Users'''
 
+    __tablename__ = 'Home'
+
+    def __repr__(self):
+        
+        home = self
+        return f'<Home {u.id} username={u.username} name={first_name} {last_name}>'
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True)
+    user_id = db.Column(db.Integer(20),
+                            nullable=False,
+                            unique=True)
+
+
+
+
+class HomeUsage(db.Model):
+    '''Database Model for Home Usage'''
