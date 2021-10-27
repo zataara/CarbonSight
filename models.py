@@ -32,7 +32,8 @@ class User(db.Model):
                             nullable=False)
     last_name = db.Column(db.String(30),
                             nullable=False)
-    home_address = db.Column(db.String)
+    state = db.Column(db.String(2),
+                            nullable=False) 
 
     @classmethod
     def register(cls, username, password, email, first_name, last_name):
@@ -64,25 +65,26 @@ class User(db.Model):
 
 
 
-class Home(db.Model):
-    '''Database model for Users'''
+class HomeUsage(db.Model):
+    '''Database Model for Home Usage'''
 
-    __tablename__ = 'Home'
+    __tablename__ = 'HomeUsage'
 
     def __repr__(self):
         
-        home = self
-        return f'<Home {u.id} username={u.username} name={first_name} {last_name}>'
+        h = self
+        return f'<HomeUsage {h.id} username={h.user_id} usage={h.usage}>'
 
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True)
     user_id = db.Column(db.Integer(20),
-                            nullable=False,
-                            unique=True)
+                            db.ForeignKey('user.username'),
+                            nullable=False,)
+    month_name = db.Column(db.String(50),
+                            nullable=False)
+    usage = db.Column(db.Integer(10),
+                            nullable=False)
 
 
 
-
-class HomeUsage(db.Model):
-    '''Database Model for Home Usage'''
