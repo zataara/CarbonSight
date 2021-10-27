@@ -4,10 +4,12 @@ from models import db, connect_db, User
 from forms import UserForm, LoginForm, HomeUsageForm
 from sqlalchemy.exc import IntegrityError
 import requests
+from app_secrets import API_KEY
 
 
 BASE_URL = "https://www.carboninterface.com/api/v1"
-API_KEY = "NJFYCDJ33R0SnwOI29elw"
+
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///synctify'
@@ -27,6 +29,7 @@ def root():
     '''Homepage directory'''
     return render_template('index.html')
 
+### Route for initially registering a user
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
 
@@ -81,8 +84,8 @@ def login_user():
     return render_template('login.html', form=form)
 
 
-@app.route('/estimates', methods=['GET', 'POST'])
-def testing():
+@app.route('/addhomeusage', methods=['GET', 'POST'])
+def addHomeUsage():
 
     form=HomeUsageForm()
 
@@ -93,18 +96,19 @@ def testing():
         usage = form.usage.data
 
         r = requests.post(f'{BASE_URL}/estimates', 
-            data={ "type": "electricity",
+            json={ "type": "electricity",
                     "electricity_unit": "mwh",
                     "electricity_value": usage,
                     "country": "us",
                     "state": homestate},
 
-            headers={"content-type":"application/json",
-                    "Authorization":f"Bearer ${API_KEY}"})
-
+            headers={"Content-Type":"application/json",
+                    "Authorization":f"Bearer {API_KEY}"})
         
-
-        return render_template('/secret', )
+        data = r.json()
+        carbon_lb = data["data"]["attributes"]["carbon_lb"]
+    
+        return render_template('testing.html', carbon_lb=carbon_lb )
 
     return render_template('login.html', form=form)
 
