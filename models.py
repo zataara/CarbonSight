@@ -73,12 +73,12 @@ class HomeUsage(db.Model):
     def __repr__(self):
         
         h = self
-        return f'<HomeUsage {h.id} username={h.user_id} usage={h.usage}>'
+        return f'<HomeUsage {h.id} username={h.username} month_name={h.month_name} usage={h.usage}>'
 
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True)
-    user_id = db.Column(db.Integer(20),
+    username = db.Column(db.Integer(20),
                             db.ForeignKey('user.username'),
                             nullable=False,)
     month_name = db.Column(db.String(50),
