@@ -109,3 +109,29 @@ class HomeUsage(db.Model):
     carbon_mt = db.Column(db.Integer, nullable = True)
 
 
+class Vehicle(db.Model):
+    '''Database Model for Vehicles'''
+
+    __tablename__ = 'vehicle'
+
+    def __init__(self, id, make, model, year):
+        self.id = id
+        self.make = make
+        self.model = model
+        self.year = year
+        
+    def __repr__(self):
+        
+        v = self
+        return f'<Vehicle>'
+
+    id = db.Column(db.String,
+                    primary_key=True,
+                    unique=True)
+    make = db.Column(db.String(50),
+                            nullable=False)
+    model = db.Column(db.Integer,
+                            nullable=False)
+    year = db.Column(db.Integer, nullable = True)
+    
+    
