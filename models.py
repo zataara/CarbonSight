@@ -72,6 +72,8 @@ class User(db.Model):
     
     homeusage = db.relationship('HomeUsage', backref='user', cascade='all,delete')
 
+    vehicle = db.relationship('Vehicle', backref='user', cascade='all,delete')
+
 
 
 class HomeUsage(db.Model):
@@ -114,7 +116,7 @@ class Vehicle(db.Model):
 
     __tablename__ = 'vehicle'
 
-    def __init__(self, id, make, model, year):
+    def __init__(self, make, model, year):
         self.id = id
         self.make = make
         self.model = model
@@ -127,11 +129,13 @@ class Vehicle(db.Model):
 
     id = db.Column(db.String,
                     primary_key=True,
-                    unique=True)
+                    autoincrement=True,)
+    username = db.Column(db.String(20),
+                            db.ForeignKey('user.username'),
+                            nullable=False,)
     make = db.Column(db.String(50),
                             nullable=False)
     model = db.Column(db.Integer,
                             nullable=False)
     year = db.Column(db.Integer, nullable = True)
-    
-    
+    carbon_interface_id = db.Column(db.String(), nullable=False)
