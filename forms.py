@@ -19,7 +19,6 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
 
 class HomeUsageForm(FlaskForm):
-    homename = StringField('Home Name', validators=[InputRequired(), Length(max=30)])
     month = StringField('Month', validators=[InputRequired(), Length(max=30)])
     usage = IntegerField('Usage', validators=[InputRequired(), NumberRange(min=1, max=None)])
 
