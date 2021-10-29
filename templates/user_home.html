@@ -8,9 +8,75 @@
 {% block body %}
 
 
-<h1>Home Page</h1>
 
 
-<p>Hello{{user.username}}</p>
+
+<h1>Hello {{user.username}}</h1>
+
+<div class='card'>
+  <a class='card-body'>
+    <h3 class='card-title text-info'>Electricity Usage</h3>
+      <table class='table table-striped'>
+        <thead class ='thead-dark'>
+        <tr>
+          <th scope='col'>Month</th>
+          <th scope='col'>Usage</th>
+          <th scope='col'>Carbon</th>
+        </tr>
+        </thead>
+        {% for field in user.homeusage %}
+            <tr>
+              <td>{{field.month_name}}</td> 
+              <td>{{field.usage}} kWh</td>
+              <td>{{field.carbon_lb}} lbs</td>
+            </tr>
+        {% endfor %}
+        <tr>
+          <td>Total</td> 
+          <td>{{user.sum_electric_usage}} kWh</td>
+          <td> lbs</td>
+        </tr>
+      </table>
+      <a href='/{{user.username}}/addhomeusage'><button class="btn btn-primary">Add Home Electricity</button></a>
+    </div>
+</div>
+<div class='card'>
+  <a class='card-body'>
+    <h3 class='card-title text-info'>Vehicle Usage</h3>
+      <table class='table table-striped'>
+        <thead class ='thead-dark'>
+        <tr>
+          <th scope='col'>Month</th>
+          <th scope='col'>Usage</th>
+          <th scope='col'>Carbon</th>
+        </tr>
+        </thead>
+        {% for field in user.homeusage %}
+            <tr>
+              <td>{{field.month_name}}</td> 
+              <td>{{field.usage}} kWh</td>
+              <td>{{field.carbon_lb}} lbs</td>
+            </tr>
+        {% endfor %}
+        <tr>
+          <td>Total</td> 
+          <td>{{user.sum_electric_usage}} kWh</td>
+          <td> lbs</td>
+        </tr>
+      </table>
+      <a href='/{{user.username}}/addhomeusage'><button class="btn btn-primary">Add Home Electricity</button></a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
