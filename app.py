@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, HomeUsage
-from forms import UserForm, LoginForm, HomeUsageForm
+from forms import UserForm, LoginForm, HomeUsageForm, Vehicle
 from sqlalchemy.exc import IntegrityError
 from support_functions import checkUserId
 from werkzeug.exceptions import Unauthorized
@@ -92,7 +92,7 @@ def user_home(username):
 
     return render_template('user_home.html', user=user)
 
-
+###  Route for adding a monthly Home Electricity Usage amount ###
 @app.route('/<username>/addhomeusage', methods=['GET', 'POST'])
 def addHomeUsage(username):
 
@@ -105,28 +105,22 @@ def addHomeUsage(username):
         usage = form.usage.data
         user = User.query.get(username)
 
-        ### API request to Carbon Interface for 
-        # r = requests.post(f'{BASE_URL}/estimates', 
-        #     json={ "type": "electricity",
-        #             "electricity_unit": "mwh",
-        #             "electricity_value": usage,
-        #             "country": "us",
-        #             "state": user.username.homestate},
+        ## API request to Carbon Interface for 
+        r = requests.post(f'{BASE_URL}/estimates', 
+            json={ "type": "electricity",
+                    "electricity_unit": "mwh",
+                    "electricity_value": usage,
+                    "country": "us",
+                    "state": user.state},
 
-        #     headers={"Content-Type":"application/json",
-        #             "Authorization":f"Bearer {API_KEY}"})
+            headers={"Content-Type":"application/json",
+                    "Authorization":f"Bearer {API_KEY}"})
         
-        # data = r.json()
-        # carbon_g = data["data"]["attributes"]["carbon_g"]
-        # carbon_lb = data["data"]["attributes"]["carbon_lb"]
-        # carbon_kg = data["data"]["attributes"]["carbon_kg"]
-        # carbon_mt = data["data"]["attributes"]["carbon_mt"]
-        
-        carbon_g = 111
-        carbon_lb = 222
-        carbon_kg = 222
-        carbon_mt = 333
-
+        data = r.json()
+        carbon_g = data["data"]["attributes"]["carbon_g"]
+        carbon_lb = data["data"]["attributes"]["carbon_lb"]
+        carbon_kg = data["data"]["attributes"]["carbon_kg"]
+        carbon_mt = data["data"]["attributes"]["carbon_mt"]
 
         newHomeUsage = HomeUsage(user.username, month, usage, carbon_g, carbon_lb, carbon_kg, carbon_mt)
 
@@ -136,5 +130,56 @@ def addHomeUsage(username):
         return render_template('user_home.html', user=user )
 
     return render_template('addHomeUsage.html', form=form)
+
+
+
+###  Route for adding a Vehicle ###
+@app.route('/<username>/addvehicle', methods=['GET', 'POST'])
+def addVehicle(username):
+
+    checkUserId(username)
+
+    form=Vehicle()
+
+    if form.validate_on_submit():
+        year = form.year.data
+        make = form.make.data
+        model = form.model.data
+        user = User.query.get(username)
+
+        ## API request to Carbon Interface for Vehicle Make, returning make_id
+        r_makes = requests.post(f'{BASE_URL}/api/vi/vehicle_makes', 
+            headers={"Content-Type":"application/json",
+                    "Authorization":f"Bearer {API_KEY}"})
+        data = r_makes.json()
+        make_id = ''
+        for object in data:
+            if object["data"]["attributes"]["make"] == make:
+                make_id = object["data"]["id"]
+                break
+        
+        ## API request to Carbon Interface for Vehicle model, returning model_id
+        r_models = requests.post(f'{BASE_URL}/api/vi/vehicle_makes/{make_id}', 
+            headers={"Content-Type":"application/json",
+                    "Authorization":f"Bearer {API_KEY}"})
+        data = r_models.json()
+        model_id = ''
+        for object in data:
+            if object["data"]["attributes"][f"{year}"] == year and object["data"]["attributes"]["name"] == model:
+                model_id = object["data"]["id"]
+                break
+        
+
+        newVehicle = Vehicle(make, model, year, model_id)
+
+        db.session.add(newVehicle)
+        db.session.commit()
+    
+        return render_template('user_home.html', user=user )
+
+    return render_template('addHomeUsage.html', form=form)
+
+
+
 
 
