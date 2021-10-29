@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import db, connect_db, User, HomeUsage
 from forms import UserForm, LoginForm, HomeUsageForm
 from sqlalchemy.exc import IntegrityError
+from support_functions import checkUserId
+from werkzeug.exceptions import Unauthorized
 import requests
 from app_secrets import API_KEY
 
@@ -12,7 +14,7 @@ BASE_URL = "https://www.carboninterface.com/api/v1"
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///synctify'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///carbonsight'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'supersecretkey'
@@ -41,7 +43,8 @@ def register_user():
         email = form.email.data
         first_name = form.first_name.data
         last_name = form.last_name.data
-        new_user = User.register(username, password, email, first_name, last_name)
+        state = form.state.data
+        new_user = User.register(username, password, email, first_name, last_name, state)
 
         try:
             db.session.commit()
@@ -53,9 +56,7 @@ def register_user():
     else:
         return render_template('register.html', form=form)
 
-@app.route('/secret')
-def secret():
-    return render_template('home.html')
+
 
 
 
@@ -78,38 +79,62 @@ def login_user():
         if user: 
             flash(f'Welcome back {user.username}!', 'primary')
             session['username'] = user.username
-            return redirect('/secret')
+            return redirect('/<username>')
         else:
             form.username.errors = ['Invalid username/password.']
     return render_template('login.html', form=form)
 
+@app.route('/<username>')
+def user_home(username):
+    # checkUserId(username)
 
-@app.route('/addhomeusage', methods=['GET', 'POST'])
-def addHomeUsage():
+    user = User.query.get_or_404(username)
+
+    return render_template('user_home.html', user=user)
+
+
+@app.route('/<username>/addhomeusage', methods=['GET', 'POST'])
+def addHomeUsage(username):
+
+    checkUserId(username)
 
     form=HomeUsageForm()
 
     if form.validate_on_submit():
-        homename = form.homename.data
-        homestate = form.homestate.data
         month = form.month.data
         usage = form.usage.data
+        user = User.query.get(username)
 
-        r = requests.post(f'{BASE_URL}/estimates', 
-            json={ "type": "electricity",
-                    "electricity_unit": "mwh",
-                    "electricity_value": usage,
-                    "country": "us",
-                    "state": homestate},
+        ### API request to Carbon Interface for 
+        # r = requests.post(f'{BASE_URL}/estimates', 
+        #     json={ "type": "electricity",
+        #             "electricity_unit": "mwh",
+        #             "electricity_value": usage,
+        #             "country": "us",
+        #             "state": user.username.homestate},
 
-            headers={"Content-Type":"application/json",
-                    "Authorization":f"Bearer {API_KEY}"})
+        #     headers={"Content-Type":"application/json",
+        #             "Authorization":f"Bearer {API_KEY}"})
         
-        data = r.json()
-        carbon_lb = data["data"]["attributes"]["carbon_lb"]
-    
-        return render_template('testing.html', carbon_lb=carbon_lb )
+        # data = r.json()
+        # carbon_g = data["data"]["attributes"]["carbon_g"]
+        # carbon_lb = data["data"]["attributes"]["carbon_lb"]
+        # carbon_kg = data["data"]["attributes"]["carbon_kg"]
+        # carbon_mt = data["data"]["attributes"]["carbon_mt"]
+        
+        carbon_g = 111
+        carbon_lb = 222
+        carbon_kg = 222
+        carbon_mt = 333
 
-    return render_template('login.html', form=form)
+
+        newHomeUsage = HomeUsage(user.username, month, usage, carbon_g, carbon_lb, carbon_kg, carbon_mt)
+
+        db.session.add(newHomeUsage)
+        db.session.commit()
+    
+        return render_template('user_home.html', user=user )
+
+    return render_template('addHomeUsage.html', form=form)
 
 
