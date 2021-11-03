@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template, redirect, flash, session
+from flask.helpers import url_for
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, HomeUsage
-from forms import UserForm, LoginForm, HomeUsageForm, Vehicle
+from models import db, connect_db, User, HomeUsage, Vehicle, VehicleUsage
+from forms import UserForm, LoginForm, HomeUsageForm, VehicleForm, VehicleUsageForm
 from sqlalchemy.exc import IntegrityError
-from support_functions import checkUserId
 from werkzeug.exceptions import Unauthorized
 import requests
 from app_secrets import API_KEY
@@ -29,9 +29,11 @@ db.create_all()
 @app.route('/')
 def root():
     '''Homepage directory'''
-    return render_template('index.html')
+    
+    return redirect(url_for('user_home'))
+    
 
-### Route for initially registering a user
+### Route for initially registering a user ###
 @app.route('/register', methods=['GET', 'POST'])
 def register_user():
 
@@ -59,13 +61,13 @@ def register_user():
 
 
 
-
+### Route for logging a user out ###
 @app.route('/logout')
 def logout():
     session.pop('username')
     return redirect('/')
 
-
+### Route for logging a user in ###
 @app.route('/login', methods=['GET', 'POST'])
 def login_user():
 
@@ -79,24 +81,32 @@ def login_user():
         if user: 
             flash(f'Welcome back {user.username}!', 'primary')
             session['username'] = user.username
-            return redirect('/<username>')
+            return redirect('home')
         else:
             form.username.errors = ['Invalid username/password.']
     return render_template('login.html', form=form)
 
-@app.route('/<username>')
-def user_home(username):
-    # checkUserId(username)
 
+
+
+### HOME PAGE FOR A USER ###
+@app.route('/home')
+def user_home():
+    if(not session['username']):
+        raise Unauthorized();
+
+    username = session['username']
     user = User.query.get_or_404(username)
-
+    # import code; code.interact(local=dict(globals(), **locals()))
     return render_template('user_home.html', user=user)
 
 ###  Route for adding a monthly Home Electricity Usage amount ###
-@app.route('/<username>/addhomeusage', methods=['GET', 'POST'])
-def addHomeUsage(username):
-
-    checkUserId(username)
+@app.route('/home/addhomeusage', methods=['GET', 'POST'])
+def addHomeUsage():
+    if(not session['username']):
+        raise Unauthorized();
+    username = session['username']
+    
 
     form=HomeUsageForm()
 
@@ -127,59 +137,147 @@ def addHomeUsage(username):
         db.session.add(newHomeUsage)
         db.session.commit()
     
-        return render_template('user_home.html', user=user )
+        return redirect(url_for('user_home'))
 
     return render_template('addHomeUsage.html', form=form)
 
 
 
 ###  Route for adding a Vehicle ###
-@app.route('/<username>/addvehicle', methods=['GET', 'POST'])
-def addVehicle(username):
+@app.route('/home/addvehicle', methods=['GET', 'POST'])
+def addVehicle():
 
-    checkUserId(username)
+    if(not session['username']):
+        raise Unauthorized();
+    username = session['username']
 
-    form=Vehicle()
+    form=VehicleForm()
 
     if form.validate_on_submit():
         year = form.year.data
         make = form.make.data
         model = form.model.data
+        name = form.name.data
         user = User.query.get(username)
 
         ## API request to Carbon Interface for Vehicle Make, returning make_id
-        r_makes = requests.post(f'{BASE_URL}/api/vi/vehicle_makes', 
+        r_makes = requests.get(f'{BASE_URL}/vehicle_makes', 
             headers={"Content-Type":"application/json",
                     "Authorization":f"Bearer {API_KEY}"})
         data = r_makes.json()
         make_id = ''
-        for object in data:
-            if object["data"]["attributes"]["make"] == make:
-                make_id = object["data"]["id"]
+        for layer in data:
+            if layer["data"]["attributes"]["name"] == make:
+                make_id = layer["data"]["id"]
                 break
         
         ## API request to Carbon Interface for Vehicle model, returning model_id
-        r_models = requests.post(f'{BASE_URL}/api/vi/vehicle_makes/{make_id}', 
+        r_models = requests.get(f'{BASE_URL}/vehicle_makes/{make_id}/vehicle_models', 
             headers={"Content-Type":"application/json",
                     "Authorization":f"Bearer {API_KEY}"})
         data = r_models.json()
         model_id = ''
-        for object in data:
-            if object["data"]["attributes"][f"{year}"] == year and object["data"]["attributes"]["name"] == model:
-                model_id = object["data"]["id"]
+        for layer in data:
+            if layer["data"]["attributes"]["year"] == year and layer["data"]["attributes"]["name"] == model:
+                model_id = layer["data"]["id"]
                 break
         
+    
+        # import code; code.interact(local=dict(globals(), **locals()))
 
-        newVehicle = Vehicle(make, model, year, model_id)
+        newVehicle = Vehicle(username, name, model_id)
 
         db.session.add(newVehicle)
         db.session.commit()
     
-        return render_template('user_home.html', user=user )
+        return redirect(url_for('user_home', user=user ))
 
     return render_template('addHomeUsage.html', form=form)
 
+### Route for adding a Vehicle's usage
+@app.route('/home/addvehicleusage', methods=['GET', 'POST'])
+def addVehicleUsage():
+    if(not session['username']):
+        raise Unauthorized();
+    username = session['username']
+    
+    vehicles = Vehicle.query.filter(Vehicle.username == username)
+
+    form=VehicleUsageForm()
+    form.vehicle.choices = [(v.id, v.name) for v in vehicles]
+
+    if form.validate_on_submit():
+        vehicle = int(form.vehicle.data)
+        month = form.month.data
+        distance = form.distance.data
+        days = int(form.days.data)
+        remote = form.remote.data
+        extra_mileage = form.extra_mileage.data
+
+        v1 = Vehicle.query.get(vehicle)
+
+        if(not remote):
+            total_mileage = (distance * 2 * days) + extra_mileage
+        else:
+            total_mileage = extra_mileage
 
 
+        ## API request to Carbon Interface for 
+        r = requests.post(f'{BASE_URL}/estimates', 
+            json={ "type": "vehicle",
+                    "distance_unit": "mi",
+                    "distance_value": total_mileage,
+                    "vehicle_model_id": v1.carbon_interface_id},
+
+            headers={"Content-Type":"application/json",
+                    "Authorization":f"Bearer {API_KEY}"})
+        
+        data = r.json()
+        carbon_g = data["data"]["attributes"]["carbon_g"]
+        carbon_lb = data["data"]["attributes"]["carbon_lb"]
+        carbon_kg = data["data"]["attributes"]["carbon_kg"]
+        carbon_mt = data["data"]["attributes"]["carbon_mt"]
+
+        newVehicleUsage = VehicleUsage(vehicle, month, total_mileage, carbon_g, carbon_lb, carbon_kg, carbon_mt)
+
+
+
+        db.session.add(newVehicleUsage)
+        db.session.commit()
+    
+        return redirect(url_for('user_home'))
+
+    return render_template('add_vehicle_usage.html', form=form)
+
+
+
+
+
+
+
+
+
+
+
+
+### Back End Routes for Javascript Usage
+@app.route('/homeUsage/<id>/delete', methods=['POST'])
+def deleteUsage(id):
+    usage = HomeUsage.query.get(int(id))
+    # import code; code.interact(local=dict(globals(), **locals()))
+    db.session.delete(usage)
+    db.session.commit()
+    return
+
+# @app.route('/vehicleUsage/<id>/delete', methods=['POST'])
+# def deleteUsage(id):
+#     usage = HomeUsage.query.get(int(id))
+#     # import code; code.interact(local=dict(globals(), **locals()))
+#     db.session.delete(usage)
+#     db.session.commit()
+#     return
+
+
+    
 
 
