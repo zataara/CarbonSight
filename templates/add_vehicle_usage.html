@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Add{% endblock %}
+
+
+{% block body %}
+<div class='card'>
+    <div class='card-body'>
+        <h3 class='card-title text-info'>Add Vehicle Usage</h3>
+        <form method="POST">
+            {{form.hidden_tag()}}
+            {% for field in form.errors %}
+            <div class="alert alert-danger">{{ field }}:
+                <ul>
+                    {% for error in form.errors[field] %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <div class="form-group row">
+                    {{field.label(class="col-sm-2 col-form-label")}}
+                    <div class="col-sm-10">
+                        {{field(class="form-control")}}
+                    </div>
+                </div>
+            {% endfor %}
+            <button class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

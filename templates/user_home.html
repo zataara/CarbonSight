@@ -61,7 +61,8 @@
         {% for field in user.vehicleusage %}
             <tr id='{{field.id}}'>
               <td>{{field.month_name}}</td> 
-              <td>{{field.usage}} kWh</td>
+              <td>{{field.vehicle.name}}</td> 
+              <td>{{field.mileage}} kWh</td>
               <td>{{field.carbon_lb}} lbs</td>
               <td><button class='rvu'>Delete</button></td>
             </tr>
@@ -73,6 +74,7 @@
         </tr>
       </table>
       <a href='/home/addvehicle'><button class="btn btn-primary">Add Vehicle</button></a>
+      <a href='/home/addvehicleusage'><button class="btn btn-primary">Add Usage</button></a>
     </div>
 </div>
 
