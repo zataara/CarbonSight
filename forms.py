@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, SelectField, IntegerField, BooleanField
 from wtforms.validators import InputRequired, Optional, Length, NumberRange, URL, EqualTo
 
 
@@ -28,6 +28,13 @@ class VehicleForm(FlaskForm):
     model = StringField('Model', validators=[InputRequired(), Length(max=20)])
     name = StringField('Name Your Vehicle', validators=[InputRequired(), Length(max=20)])
 
+class VehicleUsageForm(FlaskForm):
+    vehicle = SelectField('Vehicle', choices=[])
+    month = StringField('Month', validators=[InputRequired(), Length(max=30)])
+    distance = IntegerField('Distance to work')
+    days = SelectField('How many days a week do you work?', choices=[(1),(2),(3),(4),(5),(6),(7)])
+    remote = BooleanField('I Work Remotely')
+    extra_mileage = IntegerField('Extra Monthly Mileage')
 
 
 
