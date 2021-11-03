@@ -22,10 +22,11 @@ class HomeUsageForm(FlaskForm):
     month = StringField('Month', validators=[InputRequired(), Length(max=30)])
     usage = IntegerField('Usage', validators=[InputRequired(), NumberRange(min=1, max=None)])
 
-class Vehicle(FlaskForm):
+class VehicleForm(FlaskForm):
     year = IntegerField('Year', validators=[InputRequired(), NumberRange(min=1900, max=2025)])
     make = SelectField('Make', choices=[("Acura"), ("Alfa Romeo"), ("Aston Martin"), ("Audi"), ("Bentley"), ("BMW"), ("Bugatti"), ("Buick"), ("Cadillac"), ("Chevrolet"), ("Chrysler"), ("Dodge"), ("Ferrari"), ("Fiat"), ("Ford"), ("General Motors"), ("GMC"),  ("Honda"), ("Hyundai"), ("Infiniti"), ("Isuzu"),("Jaguar"), ("Jeep"), ("Kia"), ("Koenigsegg"),  ("Lamborghini"), ("Land Rover"), ("Lexus"), ("Lincoln"), ("Lotus"), ("Maserati"), ("Mazda"), ("Mercedes Benz"), ("Mercury"),  ("Mini"), ("Mitsubishi"), ("Nissan"), ("Plymouth"), ("Pontiac"),   ("Porsche"), ("Ram"), ("Rolls Royce"), ("Saab"), ("Saturn"), ("Shelby"), ("Smart"), ("Subaru"), ("Suzuki"), ("Toyota"), ("Tesla"), ("Volkswagon"), ("Volvo")])
     model = StringField('Model', validators=[InputRequired(), Length(max=20)])
+    name = StringField('Name Your Vehicle', validators=[InputRequired(), Length(max=20)])
 
 
 
