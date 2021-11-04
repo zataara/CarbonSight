@@ -31,7 +31,7 @@
         {% endfor %}
         <tr>
           <td>Total</td> 
-          <td>{{user.sum_electric_usage}} kWh</td>
+          <td> kWh</td>
           <td> lbs</td>
           <td></td>
         </tr>
@@ -53,7 +53,7 @@
         <tr>
           <th scope='col'>Month</th>
           <th scope='col'>Vehicle</th>
-          <th scope='col'>Usage</th>
+          <th scope='col'>Mileage</th>
           <th scope='col'>Carbon</th>
           <th scope='col'></th>
         </tr>
@@ -62,7 +62,7 @@
             <tr id='{{field.id}}'>
               <td>{{field.month_name}}</td> 
               <td>{{field.vehicle.name}}</td> 
-              <td>{{field.mileage}} miles</td>
+              <td>{{field.mileage}} mi</td>
               <td>{{field.carbon_lb}} lbs</td>
               <td><button class='rvu'>Delete</button></td>
             </tr>
@@ -70,7 +70,7 @@
         <tr>
           <td>Total</td> 
           <td></td>
-          <td>{{user.sum_electric_usage}} kWh</td>
+          <td>mi</td>
           <td> lbs</td>
           <td></td>
         </tr>
@@ -101,15 +101,17 @@
         {% for field in user.flights %}
           <tr id='{{field.id}}'>
               <td>{{field.departure}}</td> 
-              <td>{{field.destination}} kWh</td>
+              <td>{{field.destination}}</td>
+              <td>{{field.mileage}} mi</td>
               <td>{{field.carbon_lb}} lbs</td>
-              <td><button class='rhu'>Delete</button></td>
+              <td><button class='rf'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
-          <td></td> 
+          <td>Total</td> 
           <td></td>
-          <td></td>
+          <td>mi</td>
+          <td> lbs</td>
           <td></td>
         </tr>
       </table>
