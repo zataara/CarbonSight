@@ -84,6 +84,42 @@
     </div>
 </div>
 
+<!-- ====== FLIGHT FOOTPRINT ====== -->
+<div class='card mx-auto'>
+  <a class='card-body'>
+    <h3 class='card-title text-info'>Flights</h3>
+      <table class='table table-striped'>
+        <thead class ='thead-dark'>
+        <tr>
+          <th scope='col'>Departure City</th>
+          <th scope='col'>Destination City</th>
+          <th scope='col'>Mileage</th>
+          <th scope='col'>Carbon</th>
+          <th scope='col'></th>
+        </tr>
+        </thead>
+        {% for field in user.flights %}
+          <tr id='{{field.id}}'>
+              <td>{{field.departure}}</td> 
+              <td>{{field.destination}} kWh</td>
+              <td>{{field.carbon_lb}} lbs</td>
+              <td><button class='rhu'>Delete</button></td>
+            </tr>
+        {% endfor %}
+        <tr>
+          <td></td> 
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a href='/home/addflight'><button class="btn btn-primary">Add Flight</button></a>
+        </span>
+      </div>
+    </div>
+</div>
 
 
 
