@@ -33,7 +33,6 @@ class User(db.Model):
     last_name = db.Column(db.String(30), nullable=False)
     state = db.Column(db.String(2), nullable=False)
 
-    @classmethod
     def sum_electric_usage(self):
         out = 0
         # import code; code.interact(local=dict(globals(), **locals()))
@@ -177,3 +176,41 @@ class VehicleUsage(db.Model):
     carbon_lb = db.Column(db.Integer, nullable=True)
     carbon_kg = db.Column(db.Integer, nullable=True)
     carbon_mt = db.Column(db.Integer, nullable=True)
+
+
+class Flights(db.Model):
+    '''Database Model for Flights'''
+
+    __tablename__ = 'flights'
+
+    def __init__(self, username, departure, destination, mileage, carbon_g, carbon_lb, carbon_kg, carbon_mt):
+        self.username = username
+        self.departure = departure
+        self.destination = destination
+        self.mileage = mileage
+        self.carbon_g = carbon_g
+        self.carbon_lb = carbon_lb
+        self.carbon_kg = carbon_kg
+        self.carbon_mt = carbon_mt
+
+    def __repr__(self):
+        
+        h = self
+        return 
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True)
+    username = db.Column(db.String(20),
+                            db.ForeignKey('user.username'),
+                            nullable=False,)
+    departure = db.Column(db.String(50),
+                            nullable=False)
+    destination = db.Column(db.String(50),
+                            nullable=False)
+    mileage = db.Column(db.Integer,
+                            nullable=False)
+    carbon_g = db.Column(db.Integer, nullable = True)
+    carbon_lb = db.Column(db.Integer, nullable = True)
+    carbon_kg = db.Column(db.Integer, nullable = True)
+    carbon_mt = db.Column(db.Integer, nullable = True)
