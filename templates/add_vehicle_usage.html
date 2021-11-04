@@ -26,7 +26,13 @@
                     </div>
                 </div>
             {% endfor %}
-            <button class="btn btn-primary">Add</button>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-8">
+                    <button id="submit" name="submit" class="btn btn-primary" value="1">Add</button>
+                    <a href="/home" id="cancel" name="cancel" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
         </form>
     </div>
 </div>

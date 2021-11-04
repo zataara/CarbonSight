@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-
+{{user.username}}'s Carbon Footprint
 {% endblock %}
 
 
 {% block body %}
 
 
-
-
-
-<h1>Hello {{user.username}}</h1>
 <!-- ====== HOME ELECTRICITY USAGE ====== -->
-<div class='card'>
+<div class='card mx-auto'>
   <a class='card-body'>
     <h3 class='card-title text-info'>Electricity Usage</h3>
       <table class='table table-striped'>
@@ -37,15 +33,19 @@
           <td>Total</td> 
           <td>{{user.sum_electric_usage}} kWh</td>
           <td> lbs</td>
+          <td></td>
         </tr>
       </table>
-      <a href='/home/addhomeusage'><button class="btn btn-primary">Add Home Electricity</button></a>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a href='/home/addhomeusage'><button class="btn btn-primary">Add Electricity Usage</button></a>
+        </span>
+      </div>
     </div>
 </div>
 
 <!-- ====== Vehicle Usage ====== -->
-<div class='card'>
-<div class='card'>
+<div class='card mx-auto'>
   <a class='card-body'>
     <h3 class='card-title text-info'>Vehicle Usage</h3>
       <table class='table table-striped'>
@@ -62,19 +62,25 @@
             <tr id='{{field.id}}'>
               <td>{{field.month_name}}</td> 
               <td>{{field.vehicle.name}}</td> 
-              <td>{{field.mileage}} kWh</td>
+              <td>{{field.mileage}} miles</td>
               <td>{{field.carbon_lb}} lbs</td>
               <td><button class='rvu'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
           <td>Total</td> 
+          <td></td>
           <td>{{user.sum_electric_usage}} kWh</td>
           <td> lbs</td>
+          <td></td>
         </tr>
       </table>
-      <a href='/home/addvehicle'><button class="btn btn-primary">Add Vehicle</button></a>
-      <a href='/home/addvehicleusage'><button class="btn btn-primary">Add Usage</button></a>
+        <div class="input-group btn-toolbar">
+          <span class="input-group-btn">
+            <a href='/home/addvehicle'><button class="btn btn-primary">Add New Vehicle</button></a>
+          <a href='/home/addvehicleusage'><button id='add-vehicle-usage' class="btn btn-primary">Add Vehicle Usage</button></a>
+          </span>
+        </div>
     </div>
 </div>
 
