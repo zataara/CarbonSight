@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Vehicle{% endblock %}
+{% block title %}Add Flight{% endblock %}
 
 
 {% block body %}
 <div class='card'>
     <div class='card-body'>
-        <h3 class='card-title text-info'>Add Vehicle</h3>
+        <h3 class='card-title text-info'>Add Flight</h3>
         <form method="POST">
             {{form.hidden_tag()}}
             {% for field in form.errors %}
@@ -26,6 +26,7 @@
                     </div>
                 </div>
             {% endfor %}
+
             <div class="form-group">
                 <label class="col-md-4 control-label" for="submit"></label>
                 <div class="col-md-8">
