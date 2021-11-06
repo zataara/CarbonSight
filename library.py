@@ -3,83 +3,9 @@ states = [("al", "Alabama"), ("ak", "Alaska"), ("az", "Arizona"), ("ar", "Arkans
 cars = [("Acura"), ("Alfa Romeo"), ("Aston Martin"), ("Audi"), ("Bentley"), ("BMW"), ("Bugatti"), ("Buick"), ("Cadillac"), ("Chevrolet"), ("Chrysler"), ("Dodge"), ("Ferrari"), ("Fiat"), ("Ford"), ("General Motors"), ("GMC"),  ("Honda"), ("Hyundai"), ("Infiniti"), ("Isuzu"),("Jaguar"), ("Jeep"), ("Kia"), ("Koenigsegg"),  ("Lamborghini"), ("Land Rover"), ("Lexus"), ("Lincoln"), ("Lotus"), ("Maserati"), ("Mazda"), ("Mercedes Benz"), ("Mercury"),  ("Mini"), ("Mitsubishi"), ("Nissan"), ("Plymouth"), ("Pontiac"),   ("Porsche"), ("Ram"), ("Rolls Royce"), ("Saab"), ("Saturn"), ("Shelby"), ("Smart"), ("Subaru"), ("Suzuki"), ("Toyota"), ("Tesla"), ("Volkswagon"), ("Volvo")]
 
 
-airports = [('',''),('BHM', 'Birmingham International Airport'), ('DHN', 'Dothan Regional Airport'), ('HSV', 'Huntsville International Airport'), ('MOB', 'Mobile'), ('MGM', 'Montgomery'), ('ANC', 'Anchorage International Airport'), ('FAI', 'Fairbanks International Airport'), ('JNU', 'Juneau International Airport'), ('FLG', 'Flasgstaff'), ('PHX', 'Phoenix Sky Harbor International Airport'), ('TUS', 'Tucson International Airport'), ('YUM', 'Yuma International Airport'), ('FYV', 'Fayetteville'), ('LIT', 'Little Rock National Airport'), ('XNA', 'Northwest Arkansas Regional Airport'), ('BUR', 'Burbank'), ('FAT', 'Fresno'), ('LGB', 'Long Beach'), ('LAX', 'Los Angeles International Airport'), ('OAK', 'Oakland'), ('ONT', 'Ontario'), ('PSP', 'Palm Springs'), ('SMF', 'Sacramento'), ('SAN', 'San Diego'), ('SFO', 'San Fransisco International Airport'), ('SJC', 'San Jose')]
+airports = [('',''),('BHM', 'Birmingham International Airport'), ('DHN', 'Dothan Regional Airport'), ('HSV', 'Huntsville International Airport'), ('MOB', 'Mobile'), ('MGM', 'Montgomery'), ('ANC', 'Anchorage International Airport'), ('FAI', 'Fairbanks International Airport'), ('JNU', 'Juneau International Airport'), ('FLG', 'Flasgstaff'), ('PHX', 'Phoenix Sky Harbor International Airport'), ('TUS', 'Tucson International Airport'), ('YUM', 'Yuma International Airport'), ('FYV', 'Fayetteville'), ('LIT', 'Little Rock National Airport'), ('XNA', 'Northwest Arkansas Regional Airport'), ('BUR', 'Burbank'), ('FAT', 'Fresno'), ('LGB', 'Long Beach'), ('LAX', 'Los Angeles International Airport'), ('OAK', 'Oakland'), ('ONT', 'Ontario'), ('PSP', 'Palm Springs'), ('SMF', 'Sacramento'), ('SAN', 'San Diego'), ('SFO', 'San Fransisco International Airport'), ('SJC', 'San Jose'), ('SNA', 'Santa Ana'), ('ASE', 'Aspen'), ('COS', 'Colorado Springs'), ('DEN', 'Denver International Airport'), ('GJT', 'Grand Junction'), ('PUB', 'Pueblo'), ('BDL', 'Hartford'), ('HVN', 'Tweed New Haven'), ('IAD', 'Washington Dulles International Airport'), ('DCA', 'Washington National Airport'), ('DAB', 'Dayton Beach'), ('FLL', 'Fort Lauderdale-Hollywood International Airport'), ('RSW', 'Fort Meyers'), ('JAX', 'Jacksonville'), ('EYW', 'Key West International Airport'), ('MIA', 'Miami International Airport'), ('MCO', 'Orlando'), ('PNS', 'Pensecola'), ('PIE', 'St. Petersburg'), ('SRQ', 'Sarasota'), ('TPA', 'Tampa'), ('PBI', 'West Palm Beach'), ('PFN', 'Panama City-Bay County International Aiprot'), ('ATL', 'Atlanta Hartfield International Airport'), ('AGS', 'Augusta'), ('SAV', 'Savannah'), ('ITO', 'Hilo'), ('HNL', 'Honolulu International Airport'), ('OGG', 'Kahului'), ('LIH', 'Lihue'), ('BOI', 'Boise'), ('MDW', 'Chicago Midway Airport'), ('ORD', "Chicago, O'Hare International Airport"), ('MLI', 'Moline'), ('PIA', 'Peoria'), ('EVV', 'Evansville'), ('FWA', 'Fort Wayne'), ('IND', 'Indianapolis International Airport'), ('SBN', 'South Bend'), ('CID', 'Ceder Rapids'), ('DSM', 'Des Moines'), ('ICT', 'Wichita'), ('LEX', 'Lexington'), ('SDF', 'Louisville'), ('BTR', 'Baton Rouge'), ('MSY', 'New Orleans International Airport'), ('SHV', 'Shreveport'), ('AUG', 'Augusta'), ('BGR', 'Bangor'), ('PWM', 'Portland'), ('BWI', 'Baltimore'), ('BOS', 'Boston, Logan International Airport'), ('HYA', 'Hyannis'), ('ACK', 'Nantucket'), ('ORH', 'Worcester')]
 
 
-
-# Santa Ana	SNA
-# Colorado	CO
-# Aspen	ASE
-# Colorado Springs	COS
-# Denver International Airport	DEN
-# Grand Junction	GJT
-# Pueblo	PUB
-# Connecticut	CT
-# Hartford	BDL
-# Tweed New Haven	HVN
-# District of Columbia	DC
-# Washington, Dulles International Airport	IAD
-# Washington National Airport	DCA
-# Florida	FL
-# Daytona Beach	DAB
-# Fort Lauderdale-Hollywood International Airport	FLL
-# Fort Meyers	RSW
-# Jacksonville	JAX
-# Key West International Airport	EYW
-# Miami International Airport	MIA
-# Orlando	MCO
-# Pensacola	PNS
-# St. Petersburg	PIE
-# Sarasota	SRQ
-# Tampa	TPA
-# West Palm Beach	PBI
-# Panama City-Bay County International Airport	PFN
-# Georgia	GA
-# Atlanta Hartsfield International Airport	ATL
-# Augusta	AGS
-# Savannah	SAV
-# Hawaii	HI
-# Hilo	ITO
-# Honolulu International Airport	HNL
-# Kahului	OGG
-# Kailua	KOA
-# Lihue	LIH
-# Idaho	ID
-# Boise	BOI
-# Illinois	IL
-# Chicago Midway Airport	MDW
-# Chicago, O'Hare International Airport Airport	ORD
-# Moline	MLI
-# Peoria	PIA
-# Indiana	IN
-# Evansville	EVV
-# Fort Wayne	FWA
-# Indianapolis International Airport	IND
-# South Bend	SBN
-# Iowa	IA
-# Cedar Rapids	CID
-# Des Moines	DSM
-# Kansas	KS
-# Wichita	ICT
-# Kentucky	KY
-# Lexington	LEX
-# Louisville	SDF
-# Louisiana	LA
-# Baton Rouge	BTR
-# New Orleans International Airport	MSY
-# Shreveport	SHV
-# Maine	ME
-# Augusta	AUG
-# Bangor	BGR
-# Portland	PWM
-# Maryland	MD
-# Baltimore	BWI
-# Massachusetts	MA
-# Boston, Logan International Airport	BOS
-# Hyannis	HYA
-# Nantucket	ACK
-# Worcester	ORH
-# Michigan	MI
 # Battlecreek	BTL
 # Detroit Metropolitan Airport	DTW
 # Detroit	DET
