@@ -25,6 +25,9 @@ debug = DebugToolbarExtension(app)
 connect_db(app)
 db.create_all()
 
+
+
+
 ### Main routes
 @app.route('/')
 def root():
@@ -32,6 +35,8 @@ def root():
     
     return redirect(url_for('user_home'))
     
+
+
 
 ### Route for initially registering a user ###
 @app.route('/register', methods=['GET', 'POST'])
@@ -100,6 +105,10 @@ def user_home():
 
     return render_template('user_home.html', user=user)
 
+
+
+
+
 ###  Route for adding a monthly Home Electricity Usage amount ###
 @app.route('/home/addhomeusage', methods=['GET', 'POST'])
 def addHomeUsage():
@@ -140,6 +149,8 @@ def addHomeUsage():
         return redirect(url_for('user_home'))
 
     return render_template('addHomeUsage.html', form=form)
+
+
 
 
 
@@ -189,7 +200,10 @@ def addVehicle():
     
         return redirect(url_for('user_home', user=user ))
 
-    return render_template('addHomeUsage.html', form=form)
+    return render_template('addVehicle.html', form=form)
+
+
+
 
 ### Route for adding a Vehicle's usage
 @app.route('/home/addvehicleusage', methods=['GET', 'POST'])
@@ -219,7 +233,7 @@ def addVehicleUsage():
             total_mileage = extra_mileage
 
 
-        ## API request to Carbon Interface for 
+        ## API request to Carbon Interface for Vehicle estimate
         r = requests.post(f'{BASE_URL}/estimates', 
             json={ "type": "vehicle",
                     "distance_unit": "mi",
@@ -244,10 +258,10 @@ def addVehicleUsage():
     
         return redirect(url_for('user_home'))
 
-    return render_template('add_vehicle_usage.html', form=form)
+    return render_template('addVehicleUsage.html', form=form)
 
 
-###  Route for adding a monthly Home Electricity Usage amount ###
+###  Route for adding a flight###
 @app.route('/home/addflight', methods=['GET', 'POST'])
 def addFlight():
     if(not session['username']):
@@ -278,9 +292,8 @@ def addFlight():
             legs = [{"departure_airport": departure, "destination_airport": leg1},{"departure_airport": leg1, "destination_airport": destination}
         ]
 
-        # import code; code.interact(local=dict(globals(), **locals()))
 
-        ## API request to Carbon Interface for 
+        ## API request to Carbon Interface for Flight estimate
         r = requests.post(f'{BASE_URL}/estimates', 
             json={ "type": "flight",
                     "passengers": passengers,
@@ -304,7 +317,7 @@ def addFlight():
     
         return redirect(url_for('user_home'))
 
-    return render_template('addHomeUsage.html', form=form)
+    return render_template('addFlight.html', form=form)
 
 
 
@@ -326,7 +339,7 @@ def deleteHomeUsage(id):
 
 @app.route('/vehicleUsage/<id>/delete', methods=['POST'])
 def deleteVehicleUsage(id):
-    usage = VehicleUsage.query.get(int(id))
+    usage = VehicleUsage.query.get(int(id))  
     db.session.delete(usage)
     db.session.commit()
     return
