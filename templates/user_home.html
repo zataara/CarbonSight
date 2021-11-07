@@ -24,15 +24,15 @@
         {% for field in user.homeusage %}
           <tr id='{{field.id}}'>
               <td>{{field.month_name}}</td> 
-              <td>{{field.usage}} kWh</td>
-              <td>{{field.carbon_lb}} lbs</td>
+              <td><span class='electricUsage'>{{field.usage}}</span> kWh</td>
+              <td><span class='electricCarbon'>{{field.carbon_lb}}</span> lbs</td>
               <td><button class='rhu'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
           <td>Total</td> 
-          <td> kWh</td>
-          <td> lbs</td>
+          <td><span id='totalElectricityUsage'></span> kWh</td>
+          <td><span id='totalElectricityCarbon'></span> lbs</td>
           <td></td>
         </tr>
       </table>
@@ -62,16 +62,16 @@
             <tr id='{{field.id}}'>
               <td>{{field.month_name}}</td> 
               <td>{{field.vehicle.name}}</td> 
-              <td>{{field.mileage}} mi</td>
-              <td>{{field.carbon_lb}} lbs</td>
+              <td><span class='vehicleMileage'>{{field.mileage}}</span> mi</td>
+              <td><span class='vehicleCarbon'>{{field.carbon_lb}}</span> lbs</td>
               <td><button class='rvu'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
           <td>Total</td> 
           <td></td>
-          <td>mi</td>
-          <td> lbs</td>
+          <td><span id='totalVehicleMileage'></span>mi</td>
+          <td><span id='totalVehicleCarbon'></span> lbs</td>
           <td></td>
         </tr>
       </table>
@@ -102,16 +102,16 @@
           <tr id='{{field.id}}'>
               <td>{{field.departure}}</td> 
               <td>{{field.destination}}</td>
-              <td>{{field.mileage}} mi</td>
-              <td>{{field.carbon_lb}} lbs</td>
+              <td><span class='flightMileage'>{{field.mileage}}</span> mi</td>
+              <td><span class='flightCarbon'>{{field.carbon_lb}}</span> lbs</td>
               <td><button class='rf'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
           <td>Total</td> 
           <td></td>
-          <td>mi</td>
-          <td> lbs</td>
+          <td><span id='totalFlightMileage'></span> mi</td>
+          <td><span id='totalFlightCarbon'></span> lbs</td>
           <td></td>
         </tr>
       </table>
