@@ -4,9 +4,9 @@
 
 
 {% block body %}
-<div class='card my-4'>
+<div class='card register my-4'>
     <div class='card-body'>
-        <h3 class='card-title text-info'>New User Form</h3>
+        <h3 class='card-title titles'>Registration Form</h3>
         <form method="POST">
             {{form.hidden_tag()}}
             {% for field in form.errors %}
@@ -26,7 +26,13 @@
                     </div>
                 </div>
             {% endfor %}
-            <button class="btn btn-primary">Sign up!</button>
+            <div class="form-group input-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-8 input-group-btn">
+                    <button id="submit" name="submit" class="btn btn-select" value="1">Sign Up</button>
+                    <a href="/" id="cancel" name="cancel" class="btn btn-cancel">Cancel</a>
+                </div>
+            </div>
         </form>
     </div>
 </div>

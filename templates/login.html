@@ -4,9 +4,9 @@
 
 
 {% block body %}
-<div class='card'>
+<div class='card login my-4'>
     <div class='card-body'>
-        <h3 class='card-title text-info'>Login</h3>
+        <h3 class='card-title titles'>Login</h3>
         <form method="POST">
             {{form.hidden_tag()}}
             {% for field in form.errors %}
@@ -19,14 +19,20 @@
             </div>
             {% endfor %}
             {% for field in form if field.widget.input_type != 'hidden' %}
-                <div class="form-group row">
+                <div class="form-group ">
                     {{field.label(class="col-sm-2 col-form-label")}}
                     <div class="col-sm-10">
                         {{field(class="form-control")}}
                     </div>
                 </div>
             {% endfor %}
-            <button class="btn btn-primary">Login</button>
+            <div class="form-group input-group">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-8 input-group-btn">
+                    <button id="submit" name="submit" class="btn btn-select" value="1">Login</button>
+                    <a href="/" id="cancel" name="cancel" class="btn btn-cancel">Cancel</a>
+                </div>
+            </div>
         </form>
     </div>
 </div>

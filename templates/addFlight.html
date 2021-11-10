@@ -4,9 +4,9 @@
 
 
 {% block body %}
-<div class='card'>
+<div class='card mx-auto add-cards'>
     <div class='card-body'>
-        <h3 class='card-title text-info'>Add Flight</h3>
+        <h3 class='titles '>Add Flight</h3>
         <form method="POST">
             {{form.hidden_tag()}}
             {% for field in form.errors %}
@@ -20,18 +20,18 @@
             {% endfor %}
             {% for field in form if field.widget.input_type != 'hidden' %}
                 <div class="form-group row">
-                    {{field.label(class="col-sm-2 col-form-label")}}
-                    <div class="col-sm-10">
+                    {{field.label(class="col-sm-6 col-form-label")}}
+                    <div class="col-sm-6">
                         {{field(class="form-control")}}
                     </div>
                 </div>
             {% endfor %}
 
-            <div class="form-group">
+            <div class="form-group input-group">
                 <label class="col-md-4 control-label" for="submit"></label>
-                <div class="col-md-8">
-                    <button id="submit" name="submit" class="btn btn-primary" value="1">Add</button>
-                    <a href="/home" id="cancel" name="cancel" class="btn btn-default">Cancel</a>
+                <div class="col-md-8 input-group-btn">
+                    <button id="submit" name="submit" class="btn btn-select" value="1">Add</button>
+                    <a href="/home" id="cancel" name="cancel" class="btn btn-cancel">Cancel</a>
                 </div>
             </div>
         </form>

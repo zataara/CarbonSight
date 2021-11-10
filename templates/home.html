@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block title %}Welcome to CarbonSight{% endblock %}
+{% block body %}
+
+<div class="card register my-4">
+  <div class="card-body">
+    <img id="leaflogo" src="../static/imgs/carbon_footprint_transparent.png" />
+    <h1 class="card-title titles">Welcome to CarbonSight</h1>
+    <p class="welcome">A simple tool for tracking your Carbon Footprint.</p>
+    <p class="welcome">
+      Track Activities Like:<br />
+      - Electricity Usage<br />- Vehicle Mileage<br />- Flight Mileage<br />-
+      Meat Consumption
+    </p>
+  </div>
+</div>
+
+<div class="card register my-4">
+  <div class="card-body">
+    <h2 class="card-title titles">Login or Register to Get Started</h2>
+    <div class="input-group btn-toolbar">
+      <span class="input-group-btn">
+        <a href="/login"><button class="btn btn-select">Login</button></a>
+        <a href="/register"><button class="btn btn-select">Register</button></a>
+      </span>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -7,12 +7,12 @@
 
 {% block body %}
 
-
+<div id='card-holder' class='mx-auto'>
 <!-- ====== HOME ELECTRICITY USAGE ====== -->
-<div class='card mx-auto'>
+<div id='electricity-card' class='card mx-auto my-4'>
   <a class='card-body'>
-    <h3 class='card-title text-info'>Electricity Usage</h3>
-      <table class='table table-striped'>
+    <h3 class='card-title titles'>Electricity Usage</h3>
+      <table class='table table-striped table-dark '>
         <thead class ='thead-dark'>
         <tr>
           <th scope='col'>Month</th>
@@ -26,7 +26,7 @@
               <td>{{field.month_name}}</td> 
               <td><span class='electricUsage'>{{field.usage}}</span> kWh</td>
               <td><span class='electricCarbon'>{{field.carbon_lb}}</span> lbs</td>
-              <td><button class='rhu'>Delete</button></td>
+              <td><button class='btn-outline-danger btn btn-sm rhu btn-table'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
@@ -38,17 +38,17 @@
       </table>
       <div class="input-group">
         <span class="input-group-btn">
-          <a href='/home/addhomeusage'><button class="btn btn-primary">Add Electricity Usage</button></a>
+          <a href='/home/addhomeusage'><button class="btn btn-select">Add Usage</button></a>
         </span>
       </div>
     </div>
 </div>
 
-<!-- ====== Vehicle Usage ====== -->
-<div class='card mx-auto'>
+<!-- ====== Vehicle Mileage ====== -->
+<div id='vehicle-card' class='card mx-auto my-4'>
   <a class='card-body'>
-    <h3 class='card-title text-info'>Vehicle Usage</h3>
-      <table class='table table-striped'>
+    <h3 class='card-title titles'>Vehicle Mileage</h3>
+      <table class='table table-striped table-dark'>
         <thead class ='thead-dark'>
         <tr>
           <th scope='col'>Month</th>
@@ -64,7 +64,7 @@
               <td>{{field.vehicle.name}}</td> 
               <td><span class='vehicleMileage'>{{field.mileage}}</span> mi</td>
               <td><span class='vehicleCarbon'>{{field.carbon_lb}}</span> lbs</td>
-              <td><button class='rvu'>Delete</button></td>
+              <td><button class='rvu btn btn-sm btn-table btn-outline-danger'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
@@ -77,22 +77,24 @@
       </table>
         <div class="input-group btn-toolbar">
           <span class="input-group-btn">
-            <a href='/home/addvehicle'><button class="btn btn-primary">Add New Vehicle</button></a>
-          <a href='/home/addvehicleusage'><button id='add-vehicle-usage' class="btn btn-primary">Add Vehicle Usage</button></a>
+            <a href='/home/addvehicle'><button class="btn btn-select">Add Vehicle</button></a>
+          <a href='/home/addvehicleusage'><button id='add-vehicle-usage' class="btn btn-select">Add Mileage</button></a>
           </span>
         </div>
     </div>
 </div>
 
+
+
 <!-- ====== FLIGHT FOOTPRINT ====== -->
-<div class='card mx-auto'>
+<div id='flights-card' class='card mx-auto my-4'>
   <a class='card-body'>
-    <h3 class='card-title text-info'>Flights</h3>
-      <table class='table table-striped'>
+    <h3 class='card-title titles'>Flights</h3>
+      <table class='table table-striped table-dark'>
         <thead class ='thead-dark'>
         <tr>
-          <th scope='col'>Departure City</th>
-          <th scope='col'>Destination City</th>
+          <th scope='col'>Departure</th>
+          <th scope='col'>Destination</th>
           <th scope='col'>Mileage</th>
           <th scope='col'>Carbon</th>
           <th scope='col'></th>
@@ -104,7 +106,7 @@
               <td>{{field.destination}}</td>
               <td><span class='flightMileage'>{{field.mileage}}</span> mi</td>
               <td><span class='flightCarbon'>{{field.carbon_lb}}</span> lbs</td>
-              <td><button class='rf'>Delete</button></td>
+              <td><button class='rf btn btn-sm btn-outline-danger btn-table'>Delete</button></td>
             </tr>
         {% endfor %}
         <tr>
@@ -117,10 +119,11 @@
       </table>
       <div class="input-group">
         <span class="input-group-btn">
-          <a href='/home/addflight'><button class="btn btn-primary">Add Flight</button></a>
+          <a href='/home/addflight'><button class="btn btn-select">Add Flight</button></a>
         </span>
       </div>
     </div>
+</div>
 </div>
 
 
