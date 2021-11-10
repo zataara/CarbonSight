@@ -1,0 +1,164 @@
+
+
+/* Navigation Bar */
+
+.navbar-custom {
+    background: linear-gradient(to right, rgba(88,161,43,223), rgba(131,183,65,196))
+}
+
+#leaficon {
+    width: 30px;
+    display: flex;
+    float: left;
+}
+
+#carbonsight-header{
+    padding: 5px 0 0 7px;
+    float: left;
+    font-weight: 750;
+    font-size: 30px;
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 3px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+
+
+
+body {
+    background-color: #222;
+    color: #e6e6e6;
+    border-color: #e6e6e6
+}
+
+.btn-select {
+    background-color: transparent;
+    border: 1px solid rgba(131,183,65,196);
+    color: rgba(131,183,65,196);
+
+}
+
+.btn-select:hover {
+
+    background-image: linear-gradient(to right, rgba(88,161,43,223), rgba(131,183,65,196))
+}
+
+.btn-cancel {
+    color: white;
+    border: 1px solid rgba(88,161,43,223)
+}
+
+.btn-cancel:hover {
+    color: white;
+    border-color: white;
+    background-color: rgb(150, 0, 0);
+}
+
+.btn-table {
+    background-color: transparent;
+}
+
+.titles {
+    color: rgba(131,183,65,196);
+    margin: 0, auto;
+    
+}
+
+.add-card {
+    margin-top: 10px;
+}
+
+.card {
+    background-color: #222;
+    color: #e6e6e6;
+    border-color: #e6e6e6;
+    width: 30%;
+}
+
+.login, .register {
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px; 
+    width: 37%
+}
+
+.high-carbon {
+    color: rgb(151, 0, 0);
+}
+
+#card-holder {
+    display: block;
+    width: 80%;
+    
+}
+
+#electricity-card {
+    margin: 5px;
+    margin-right: 10px;
+    float:left
+}
+
+#vehicle-card {
+    margin: 5px;
+    float:left
+}
+
+#flights-card {
+    margin: 5px;
+    float:left
+}
+
+
+
+/* Home Page Items */
+#leaflogo {
+    max-width: 200px;
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+.welcome {
+    margin-left: 20px;
+    float:left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#add-vehicle-usage {
+    float: left;
+
+}
+
+.btn {
+    margin: 5px
+}
+
+.btn-toolbar {
+    justify-content: left
+}
+
+
