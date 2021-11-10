@@ -30,10 +30,10 @@ db.create_all()
 
 ### Main routes
 @app.route('/')
-def root():
+def home():
     '''Homepage directory'''
     
-    return redirect(url_for('user_home'))
+    return render_template('home.html')
     
 
 
