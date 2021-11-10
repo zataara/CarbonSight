@@ -1,5 +1,8 @@
 # CarbonSight
 
+[![wakatime](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/4ab30f7c-113a-49c7-a677-d004906d678c.svg)](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/4ab30f7c-113a-49c7-a677-d004906d678c)
+
+
 CarbonSight is a web app that allows users to estimate and visualize their Carbon Footprint from activites like driving vehicles, traveling on airplanes, using electricity at home and consuming meat products. Users are shown steps they can take to offset their Footprint to bring their lifestyle more into balance with planetary homeostasis.
 
 
