@@ -9,53 +9,55 @@
 
 <div id='card-holder' class='mx-auto'>
 <!-- ====== HOME ELECTRICITY USAGE ====== -->
-<div id='electricity-card' class='card mx-auto my-4'>
-  <a class='card-body'>
+<div id='electricity-card' class='card mx-auto my-4 display-card'>
+  <a class='card-body display-card-body'>
     <h3 class='card-title titles'>Electricity Usage</h3>
-      <table class='table table-striped table-dark '>
+    <table class='table table-sm table-striped table-dark display-table'>
         <thead class ='thead-dark'>
-        <tr>
-          <th scope='col'>Month</th>
-          <th scope='col'>Usage</th>
-          <th scope='col'>Carbon</th>
-          <th scope='col'></th>
+        <tr class="sticky-cells-top">
+          <th class="sticky-cells-top" scope='col'>Month</th>
+          <th class="sticky-cells-top" scope='col'>Usage</th>
+          <th class="sticky-cells-top" scope='col'>Carbon</th>
+          <th class="sticky-cells-top" scope='col'></th>
         </tr>
         </thead>
         {% for field in user.homeusage %}
           <tr id='{{field.id}}'>
-              <td>{{field.month_name}}</td> 
-              <td><span class='electricUsage'>{{field.usage}}</span> kWh</td>
-              <td><span class='electricCarbon'>{{field.carbon_lb}}</span> lbs</td>
-              <td><button class='btn-outline-danger btn btn-sm rhu btn-table'>Delete</button></td>
+              <td class='width4'>{{field.month_name}}</td> 
+              <td class='width4'><span class='electricUsage'>{{field.usage}}</span> kWh</td>
+              <td class='width4'><span class='electricCarbon'>{{field.carbon_lb}}</span> lbs</td>
+              <td class='width4'><button class='btn-outline-danger btn btn-sm rhu btn-table'>X</button></td>
             </tr>
         {% endfor %}
+        <tfoot>
         <tr>
-          <td>Total</td> 
-          <td><span id='totalElectricityUsage'></span> kWh</td>
-          <td><span id='totalElectricityCarbon'></span> lbs</td>
-          <td></td>
+          <td cclass='width4' >Total</td> 
+          <td class='width4'><span id='totalElectricityUsage'></span> kWh</td>
+          <td class='width4'><span id='totalElectricityCarbon'></span> lbs</td>
+          <td class='width4'></td>
         </tr>
+      </tfoot>
       </table>
       <div class="input-group">
         <span class="input-group-btn">
           <a href='/home/addhomeusage'><button class="btn btn-select">Add Usage</button></a>
         </span>
-      </div>
+      </div> 
     </div>
 </div>
 
 <!-- ====== Vehicle Mileage ====== -->
-<div id='vehicle-card' class='card mx-auto my-4'>
-  <a class='card-body'>
+<div id='vehicle-card' class='card mx-auto my-4 display-card'>
+  <a class='card-body display-card-body'>
     <h3 class='card-title titles'>Vehicle Mileage</h3>
-      <table class='table table-striped table-dark'>
+      <table class='table table-sm table-striped table-dark display-table'>
         <thead class ='thead-dark'>
         <tr>
-          <th scope='col'>Month</th>
-          <th scope='col'>Vehicle</th>
-          <th scope='col'>Mileage</th>
-          <th scope='col'>Carbon</th>
-          <th scope='col'></th>
+          <th class="sticky-cells-top" scope='col'>Month</th>
+          <th class="sticky-cells-top" scope='col'>Vehicle</th>
+          <th class="sticky-cells-top" scope='col'>Mileage</th>
+          <th class="sticky-cells-top" scope='col'>Carbon</th>
+          <th class="sticky-cells-top" scope='col'></th>
         </tr>
         </thead>
         {% for field in user.vehicleusage %}
@@ -64,7 +66,7 @@
               <td>{{field.vehicle.name}}</td> 
               <td><span class='vehicleMileage'>{{field.mileage}}</span> mi</td>
               <td><span class='vehicleCarbon'>{{field.carbon_lb}}</span> lbs</td>
-              <td><button class='rvu btn btn-sm btn-table btn-outline-danger'>Delete</button></td>
+              <td><button class='rvu btn btn-sm btn-table btn-outline-danger'>X</button></td>
             </tr>
         {% endfor %}
         <tr>
@@ -87,17 +89,17 @@
 
 
 <!-- ====== FLIGHT FOOTPRINT ====== -->
-<div id='flights-card' class='card mx-auto my-4'>
-  <a class='card-body'>
+<div id='flights-card' class='card mx-auto my-4 display-card'>
+  <a class='card-body display-card-body'>
     <h3 class='card-title titles'>Flights</h3>
-      <table class='table table-striped table-dark'>
+      <table class='table table-sm table-striped table-dark display-table'>
         <thead class ='thead-dark'>
         <tr>
-          <th scope='col'>Departure</th>
-          <th scope='col'>Destination</th>
-          <th scope='col'>Mileage</th>
-          <th scope='col'>Carbon</th>
-          <th scope='col'></th>
+          <th class="sticky-cells-top" scope='col'>Departure</th>
+          <th class="sticky-cells-top" scope='col'>Destination</th>
+          <th class="sticky-cells-top" scope='col'>Mileage</th>
+          <th class="sticky-cells-top" scope='col'>Carbon</th>
+          <th class="sticky-cells-top" scope='col'></th>
         </tr>
         </thead>
         {% for field in user.flights %}
@@ -106,7 +108,7 @@
               <td>{{field.destination}}</td>
               <td><span class='flightMileage'>{{field.mileage}}</span> mi</td>
               <td><span class='flightCarbon'>{{field.carbon_lb}}</span> lbs</td>
-              <td><button class='rf btn btn-sm btn-outline-danger btn-table'>Delete</button></td>
+              <td><button class='rf btn btn-sm btn-outline-danger btn-table'>X</button></td>
             </tr>
         {% endfor %}
         <tr>
@@ -124,6 +126,16 @@
       </div>
     </div>
 </div>
+</div>
+
+<!-- ====== SUMMARY CARD ====== -->
+<div id='display-summary'>
+  <div id='summary-card' class='card mx-auto my-4'>
+    <a class='card-body display-card-body'>
+      <h3 class='card-title titles'>Total Footprint</h3>
+      <h3 class='high-carbon'><span id='totalFootprint'></span> lbs</h3>
+    </div>
+  </div>
 </div>
 
 
