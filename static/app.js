@@ -1,6 +1,9 @@
 const removeHomeUsageButtons = document.querySelectorAll(".rhu");
 const removeVehicleUsageButtons = document.querySelectorAll(".rvu");
 const removeFlightButtons = document.querySelectorAll(".rf");
+let totalElectricityCarbonAmount;
+let totalVehicleCarbonAmount;
+let totalFlightCarbonAmount;
 
 //Calculate a Users Electricity Usage
 function calculateElectricity() {
@@ -18,7 +21,7 @@ function calculateElectricity() {
   for (let usage of electricityCarbon) {
     totalCarbon.push(parseInt(usage.innerHTML));
   }
-  let totalElectricityCarbonAmount = totalCarbon.reduce((a, b) => a + b);
+  totalElectricityCarbonAmount = totalCarbon.reduce((a, b) => a + b);
   let totalElectricityCarbon = document.querySelector(
     "#totalElectricityCarbon"
   );
@@ -41,7 +44,7 @@ function calculateVehicle() {
   for (let usage of vehicleCarbon) {
     totalCarbon.push(parseInt(usage.innerHTML));
   }
-  let totalVehicleCarbonAmount = totalCarbon.reduce((a, b) => a + b);
+  totalVehicleCarbonAmount = totalCarbon.reduce((a, b) => a + b);
   let totalVehicleCarbon = document.querySelector("#totalVehicleCarbon");
   totalVehicleCarbon.innerHTML = totalVehicleCarbonAmount;
 }
@@ -62,9 +65,18 @@ function calculateFlight() {
   for (let usage of flightCarbon) {
     totalCarbon.push(parseInt(usage.innerHTML));
   }
-  let totalFlightCarbonAmount = totalCarbon.reduce((a, b) => a + b);
+  totalFlightCarbonAmount = totalCarbon.reduce((a, b) => a + b);
   let totalFlightCarbon = document.querySelector("#totalFlightCarbon");
   totalFlightCarbon.innerHTML = totalFlightCarbonAmount;
+}
+
+
+//Caculate a User's total Footprint
+function calculateTotal() {
+let totalCarbonAmount = totalElectricityCarbonAmount + totalVehicleCarbonAmount + totalFlightCarbonAmount;
+
+let totalCarbon = document.querySelector("#totalFootprint");
+totalCarbon.innerHTML = totalCarbonAmount;
 }
 
 // Delete a Home Usage
@@ -74,6 +86,7 @@ for (let btn of removeHomeUsageButtons) {
 
     e.target.parentElement.parentElement.remove();
     calculateElectricity();
+    calculateTotal();
   });
 }
 
@@ -88,6 +101,7 @@ for (let btn of removeVehicleUsageButtons) {
 
     e.target.parentElement.parentElement.remove();
     calculateVehicle();
+    calculateTotal();
   });
 }
 async function deleteVehicleUsage(id) {
@@ -101,6 +115,7 @@ for (let btn of removeFlightButtons) {
 
     e.target.parentElement.parentElement.remove();
     calculateFlight();
+    calculateTotal();
   });
 }
 async function deleteFlight(id) {
@@ -112,6 +127,7 @@ function calculateAll() {
   calculateElectricity();
   calculateVehicle();
   calculateFlight();
+  calculateTotal();
 }
 
 calculateAll();
