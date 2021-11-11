@@ -61,16 +61,68 @@ body {
 
 .btn-table {
     background-color: transparent;
+    font-size: xx-small;
+    
 }
 
 .titles {
     color: rgba(131,183,65,196);
     margin: 0, auto;
+    padding: 10px, 0px;
     
 }
 
 .add-card {
     margin-top: 10px;
+}
+
+.display-card {
+    height: 500px;
+}
+
+#display-summary {
+    width: 100%;
+    margin: auto;
+}
+
+
+.display-card-body {
+    padding-bottom: 0 !important;
+}
+.table-holder {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 10px;
+}
+table {
+    display: block;
+    height: 370px;
+    overflow: auto;
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0.5rem;
+    table-layout: fixed;
+
+}
+
+
+.sticky-cells-top {
+    position: sticky;
+    top: 0;
+    
+}
+
+
+
+.width4 {
+    padding: .25rem;
+    width: 35%
+}
+
+td {
+   padding: .25rem;
+   width: 25%
 }
 
 .card {
@@ -87,30 +139,43 @@ body {
     width: 37%
 }
 
+.hello {
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 10px;
+}
+
 .high-carbon {
-    color: rgb(151, 0, 0);
+    color: rgb(216, 6, 6);
 }
 
 #card-holder {
     display: block;
-    width: 80%;
+    width: 100%;
+
     
 }
 
+
+
+
+
 #electricity-card {
     margin: 5px;
-    margin-right: 10px;
-    float:left
+    float:left;
+    width:33.33%
 }
 
 #vehicle-card {
     margin: 5px;
-    float:left
+    float:left;
+    width: 33.33%
 }
 
 #flights-card {
     margin: 5px;
-    float:left
+    float:left;
+    width: 33.33%
 }
 
 
@@ -121,6 +186,8 @@ body {
     float: left;
     margin-right: 10px;
 }
+
+
 
 
 
