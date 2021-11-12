@@ -73,10 +73,19 @@ function calculateFlight() {
 
 //Caculate a User's total Footprint
 function calculateTotal() {
-let totalCarbonAmount = totalElectricityCarbonAmount + totalVehicleCarbonAmount + totalFlightCarbonAmount;
+  let totalCarbonAmount
+    if(totalElectricityCarbonAmount) {
+      totalCarbonAmount += totalElectricityCarbonAmount;
+    } 
+    if(totalVehicleCarbonAmount) {
+      totalCarbonAmount += totalVehicleCarbonAmount;
+    }
+    if(totalFlightCarbonAmount) {
+      totalCarbonAmount += totalFlightCarbonAmount
+    }
 
-let totalCarbon = document.querySelector("#totalFootprint");
-totalCarbon.innerHTML = totalCarbonAmount;
+  let totalCarbon = document.querySelector("#totalFootprint");
+  totalCarbon.innerHTML = totalCarbonAmount;
 }
 
 // Delete a Home Usage
