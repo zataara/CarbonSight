@@ -6,7 +6,6 @@ from forms import UserForm, LoginForm, HomeUsageForm, VehicleForm, VehicleUsageF
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import Unauthorized
 import requests
-# from app_secrets import API_KEY
 import os
 import re
 
@@ -18,17 +17,22 @@ BASE_URL = "https://www.carboninterface.com/api/v1"
 
 app = Flask(__name__)
 
-uri = os.getenv("DATABASE_URL")  # or other relevant config var
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
+############### SETUP FOR HEROKU DEPLOYMENT #################################
+# uri = os.getenv("DATABASE_URL")  # or other relevant config var
+# if uri.startswith("postgres://"):
+#     uri = uri.replace("postgres://", "postgresql://", 1)
+# API_KEY = os.environ.get('API_KEY')
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL?sslmode=require').replace('postgres://', 'postgresql://')
-app.config['SQLALCHEMY_DATABASE_URI'] = uri
+############### SETUP FOR DEVELOPMENT ENVIRONMENT ###########################
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///carbonsight'
+from app_secrets import API_KEY
+
+
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-API_KEY = os.environ.get('API_KEY')
 debug = DebugToolbarExtension(app)
 
 
