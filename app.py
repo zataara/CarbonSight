@@ -6,7 +6,8 @@ from forms import UserForm, LoginForm, HomeUsageForm, VehicleForm, VehicleUsageF
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import Unauthorized
 import requests
-from app_secrets import API_KEY
+import os
+
 
 
 BASE_URL = "https://www.carboninterface.com/api/v1"
@@ -14,10 +15,11 @@ BASE_URL = "https://www.carboninterface.com/api/v1"
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///carbonsight'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.evniron.get('postgresql-acute-89755', 'postgresql:///carbonsight')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['API_KEY'] = os.environ.get('API_KEY')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
