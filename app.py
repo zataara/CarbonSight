@@ -18,14 +18,14 @@ BASE_URL = "https://www.carboninterface.com/api/v1"
 app = Flask(__name__)
 
 ############### SETUP FOR HEROKU DEPLOYMENT #################################
-# uri = os.getenv("DATABASE_URL")  # or other relevant config var
-# if uri.startswith("postgres://"):
-#     uri = uri.replace("postgres://", "postgresql://", 1)
-# API_KEY = os.environ.get('API_KEY')
+uri = os.getenv("DATABASE_URL")  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+API_KEY = os.environ.get('API_KEY')
 
 ############### SETUP FOR DEVELOPMENT ENVIRONMENT ###########################
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///carbonsight'
-from app_secrets import API_KEY
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///carbonsight'
+# from app_secrets import API_KEY
 
 
 
