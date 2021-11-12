@@ -26,8 +26,6 @@ connect_db(app)
 db.create_all()
 
 
-
-
 ### Main routes
 @app.route('/')
 def home():
