@@ -15,7 +15,7 @@ BASE_URL = "https://www.carboninterface.com/api/v1"
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.evniron.get('postgresql-acute-89755', 'postgresql:///carbonsight')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgresql-acute-89755', 'postgresql:///carbonsight')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'supersecretkey'
