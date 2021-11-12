@@ -76,7 +76,9 @@ class User(db.Model):
 
     vehicle = db.relationship('Vehicle', backref='user', cascade='all,delete')
 
-    vehicleusage = db.relationship('VehicleUsage', secondary='vehicle', primaryjoin = "User.username == Vehicle.username", secondaryjoin="VehicleUsage.vehicle_id == Vehicle.id", backref='user', cascade='all,delete')
+    vehicleusage = db.relationship('VehicleUsage', secondary='vehicle', primaryjoin = "User.username == Vehicle.username", secondaryjoin="VehicleUsage.vehicle_id == Vehicle.id", cascade='all,delete')
+
+    
 
 
 
