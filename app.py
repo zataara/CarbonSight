@@ -27,8 +27,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'supersecretkey'
-app.config['API_KEY'] = os.environ.get('API_KEY')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+API_KEY = os.environ.get('API_KEY')
 debug = DebugToolbarExtension(app)
 
 
