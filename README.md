@@ -32,7 +32,7 @@ Latest working build can be found here https://carbonsight.herokuapp.com
 ## <a name='TechnologiesUsed'></a>Technologies Used
 <a name='FrontEnd'></a><b>Front-End:</b> Vanilla JS, AJAX, Axios, Bootstrap
 
-<a name='BackEnd'></a><b>Back-End:</b> Python, Flask, wtforms, bcrypt, 
+<a name='BackEnd'></a><b>Back-End:</b> Python, Flask, wtforms, bcrypt, SQLAlchemy
 
 <a name='Database'></a><b>Database:</b> PostgreSQL
 
@@ -49,6 +49,7 @@ A walkthrough of the site's features can be found <a>here</a>
 CarbonSight uses User Registration and Login to save a users Carbon Footprint Data. If you do not wish to create your own account you may use the test account below:
 
 Username: test
+<br>
 Password: test
 
 ## <a name='Features'></a>Features
