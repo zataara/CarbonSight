@@ -9,7 +9,7 @@ CarbonSight is a web app that allows users to estimate and visualize their Carbo
 
 <br>
 
-<img src='./static/imgs/Welcome_To_CarbonSight.png'>
+<img src='./static/imgs/Welcome_To_CarbonSight1.png'>
 
 ## Table of Contents
 1. [Deployment](#Deployment)
