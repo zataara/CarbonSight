@@ -1,6 +1,6 @@
 # CarbonSight
 
-[![wakatime](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/4ab30f7c-113a-49c7-a677-d004906d678c.svg)](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/4ab30f7c-113a-49c7-a677-d004906d678c) [![Heroku App Status](https://heroku-shields.herokuapp.com/carbonsight)](https://carbonsight.herokuapp.com) <img src="https://img.shields.io/github/languages/code-size/zataara/carbonsight"> ![GitHub last commit](https://img.shields.io/github/last-commit/zataara/carbonsight) 
+[![wakatime](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/4ab30f7c-113a-49c7-a677-d004906d678c.svg)](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/4ab30f7c-113a-49c7-a677-d004906d678c) <img src="https://img.shields.io/github/languages/code-size/zataara/carbonsight"> ![GitHub last commit](https://img.shields.io/github/last-commit/zataara/carbonsight) 
 
 
 <br>
